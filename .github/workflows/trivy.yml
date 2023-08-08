@@ -26,14 +26,14 @@ jobs:
     name: Build
     runs-on: "ubuntu-20.04"
     steps:
-      - name: Checkout code
+      - name: Checkout code #action to fetch the code from repo.
         uses: actions/checkout@v3
 
-      - name: Build an image from Dockerfile
+      - name: Build an image from Dockerfile #builds the image.
         run: |
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
 
-      - name: Run Trivy vulnerability scanner
+      - name: Run Trivy vulnerability scanner #runs the scanner.
         uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
         with:
           image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
